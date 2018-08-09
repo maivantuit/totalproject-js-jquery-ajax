@@ -11,31 +11,31 @@ function ThemSinhVien(){
 	var sdt = document.getElementById("sdt").value;
 	
 	// Kiểm tra validation.
-	if(validate.KiemTraRong(masv)){
+	if(validate.checkEmpty(masv)){
 		document.getElementById("masv").style.borderColor='red';
 		return;
 	}else{
 		document.getElementById("masv").style.borderColor='green';
 	}
-	if(validate.KiemTraRong(hoten)){
+	if(validate.checkEmpty(hoten)){
 		document.getElementById("hoten").style.borderColor='red';
 		return;
 	}else{
 		document.getElementById("hoten").style.borderColor='green';
 	}
-	if(validate.KiemTraRong(cmnd)){
+	if(validate.checkEmpty(cmnd)){
 		document.getElementById("cmnd").style.borderColor='red';
 		return;
 	}else{
 		document.getElementById("cmnd").style.borderColor='green';
 	}
-	if(validate.KiemTraEmail(email)){
+	if(validate.checkEmail(email)){
 		document.getElementById("email").style.borderColor='green';
 	}else{
 		document.getElementById("email").style.borderColor='red';
 		return;
 	}
-	if(validate.KiemTraSoDT(sdt)){
+	if(validate.checkNumberPhone(sdt)){
 		document.getElementById("sdt").style.borderColor='green';
 	}else{
 		document.getElementById("sdt").style.borderColor='red';
@@ -59,11 +59,11 @@ function CapNhatDanhSachSV(DanhSachSinhVien){
 		var trSinhVien = document.createElement("tr");
 		// tạo thẻ td
 		var tdCheckBox = document.createElement("td");
-		var tdMaSV = TaoTheTD("MaSV", sv.MaSV);
-		var tdHoTen = TaoTheTD("HoTen", sv.HoTen);
-		var tdCMND = TaoTheTD("CMND", sv.CMND);
-		var tdEmail = TaoTheTD("Email", sv.Email);
-		var tdSDT = TaoTheTD("SoDT", sv.SoDT);
+		var tdMaSV = createTagTd("MaSV", sv.MaSV);
+		var tdHoTen = createTagTd("HoTen", sv.HoTen);
+		var tdCMND = createTagTd("CMND", sv.CMND);
+		var tdEmail = createTagTd("Email", sv.Email);
+		var tdSDT = createTagTd("SoDT", sv.SoDT);
 		
 		// Append các td vào tr
 		trSinhVien.appendChild(tdCheckBox);
@@ -73,13 +73,28 @@ function CapNhatDanhSachSV(DanhSachSinhVien){
 		trSinhVien.appendChild(tdCMND);			
 		trSinhVien.appendChild(tdSDT);
 		// Append tr vào tbodySinhVien
-		listTableSV.appendChild(trSinhVien);
+		listTableSV.appendChild(trSinhVien);		 
 	}
 }
-function TaoTheTD(className, value){
+function createTagTd(className, value){
 	var tdSinhVien = document.createElement("td");
 	tdSinhVien.className=className;
 	tdSinhVien.innerHTML=value;
 	return tdSinhVien;
 	
+}
+// Lưu trữ dữ liệu, được HTML5 hổ trợ. (giống như cookie)
+function SetStorage(){
+	// Convert obj thành chuổi json.
+	var jsonDanhSachSinhVien = JSON.stringify(danhSachSinhVien.DSSV);
+	// Json được lưu vào storage với key là DanhSachSV.
+	localStorage.setItem("DanhSachSV",jsonDanhSachSinhVien);
+	
+}
+function GetStorage(){
+	// Lấy ra chuỗi json là mảng DSSV.
+	var jsonDanhSachSinhVien = localStorage.getItem("DanhSachSV");
+	var mangDSSV = JSON.parse(jsonDanhSachSinhVien);
+	danhSachSinhVien.DSSV= mangDSSV;
+	CapNhatDanhSachSV(danhSachSinhVien);
 }

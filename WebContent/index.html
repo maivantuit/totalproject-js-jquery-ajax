@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -6,7 +5,7 @@
 <title>Java Manager Students</title>
 <meta charset="UTF-8">
 	<title>Document</title>
-	<!--Lưu ý chèn js theo thứ tự main cần sử dụng danhsachsinhvien, danhsachsinhvien cần sử dụng sinhvien-->
+	<!--LÆ°u Ã½ chÃ¨n js theo thá»© tá»± main cáº§n sá»­ dá»¥ng danhsachsinhvien, danhsachsinhvien cáº§n sá»­ dá»¥ng sinhvien-->
 	<!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
 
@@ -25,55 +24,55 @@
 <body>
 	<div class="logo"></div>
 	<div class="container">
-		<h2>Thông tin sinh viên</h2>
+		<h2>Information student</h2>
 		<form>
 			<div class="form-group">
-				<label for="masv">Mã SV:</label> <input type="text"
-					class="form-control" id="masv" placeholder="Nhập MaSV" name="MaSV">
+				<label for="masv">Id student:</label> <input type="text"
+					class="form-control" id="masv" placeholder="Input id student" name="MaSV">
 			</div>
 			<div class="form-group">
-				<label for="hoten">Họ tên:</label> <input type="text"
-					class="form-control" id="hoten" placeholder="Nhập Họ tên"
+				<label for="hoten">Name:</label> <input type="text"
+					class="form-control" id="hoten" placeholder="Input name student"
 					name="hoten">
 			</div>
 			<div class="form-group">
 				<label for="cmnd">CMND:</label> <input type="text"
-					class="form-control" id="cmnd" placeholder="Nhập CMND" name="cmnd">
+					class="form-control" id="cmnd" placeholder="Input CMND" name="cmnd">
 			</div>
 			<div class="form-group">
-				<label for="sdt">Điện thoại:</label> <input type="text"
-					class="form-control" id="sdt" placeholder="Nhập SDT" name="sdt">
+				<label for="sdt">Number phone:</label> <input type="text"
+					class="form-control" id="sdt" placeholder="Input SDT" name="sdt">
 			</div>
 
 			<div class="form-group">
 				<label for="email">Email:</label> <input type="email"
-					class="form-control" id="email" placeholder="Nhập Email"
+					class="form-control" id="email" placeholder="Input Email"
 					name="email">
 			</div>
 			<div class="form-group">
-				<label for="Toan">Toán:</label> <input type="number"
-					class="form-control" id="Toan" placeholder="Nhập Toán" name="Toan">
+				<label for="Toan">Math:</label> <input type="number"
+					class="form-control" id="Toan" placeholder="Input math" name="Toan">
 			</div>
 			<div class="form-group">
-				<label for="Ly">Lý:</label> <input type="number"
-					class="form-control" id="Ly" placeholder="Nhập Lý" name="Ly">
+				<label for="Ly">Ly:</label> <input type="number"
+					class="form-control" id="Ly" placeholder="Input ly" name="Ly">
 			</div>
 			<div class="form-group">
 				<label for="Hoa">Hoa:</label> <input type="number"
-					class="form-control" id="Hoa" placeholder="Nhập Hóa" name="Hoa">
+					class="form-control" id="Hoa" placeholder="Input hoa" name="Hoa">
 			</div>
 			<button type="button" class="btn btn-success"
-				onclick="ThemSinhVien()">Thêm sinh viên</button>
+				onclick="ThemSinhVien()">Add student</button>
 			<button type="button" class="btn btn-primary" onclick="LuuThongTin()">
-				Lưu</button>
+				Save</button>
 		</form>
 		<div style="float: right;">
-			<button class="btn btn-success" onclick="SetStorage()">Lưu
+			<button class="btn btn-success" onclick="SetStorage()">Save
 				storage</button>
-			<button class="btn btn-primary" onclick="GetStorage()">Lấy
+			<button class="btn btn-primary" onclick="GetStorage()">Get
 				storage</button>
-			<button class="btn btn-danger" onclick="XoaSinhVien()">Xóa
-				sinh viên</button>
+			<button class="btn btn-danger" onclick="XoaSinhVien()">Delete
+				Student</button>
 		</div>
 	</div>
 	<!--table bootstrap 4 -->
@@ -84,16 +83,16 @@
 			<div class="input-group">
 				<input type="text" id="tukhoa" onkeyup="TimKiemSinhVien()"
 					onchange="TimKiemSinhVien()" class="form-control"
-					placeholder="Nhập vào họ tên ..."> <span
+					placeholder="Input keyword ..."> <span
 					class="input-group-btn">
 					<button class="btn btn-secondary" onclick="TimKiemSinhVien()"
-						type="button">Tìm kiếm</button>
+						type="button">Search</button>
 				</span>
 			</div>
 			<br />
 			<div class="alert alert-success" id="ThongBao"></div>
 		</div>
-		<h2>Danh sách sinh viên</h2>
+		<h2>List Students</h2>
 		<p></p>
 		<table id="TableSinhVien" class="table">
 			<thead>
@@ -103,9 +102,9 @@
 					<th>HoTen</th>
 					<th>Email</th>
 					<th>CMND</th>
-					<th>Điện thoại</th>
-					<!-- <th>Điểm TB</th>
-					<th>Xếp loại</th> -->
+					<th>SDT</th>
+					<!-- <th>Diem TB</th>
+					<th>Rank</th> -->
 				</tr>
 			</thead>
 			<tbody id="tbodySinhVien">
