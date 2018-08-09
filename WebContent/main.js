@@ -49,6 +49,7 @@ function ThemSinhVien(){
 	console.log(danhSachSinhVien);
 	
 }
+
 function CapNhatDanhSachSV(DanhSachSinhVien){
 	var listTableSV = document.getElementById("tbodySinhVien");
 	listTableSV.innerHTML="";
