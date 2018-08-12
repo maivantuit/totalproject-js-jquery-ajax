@@ -19,6 +19,14 @@ function DanhSachSinhVien(){
 		
 	}
 	this.TimKiemSinhVien= function(keyword){
-		
+		var listResult = new DanhSachSinhVien();
+		for(var i=0 ; i< this.DSSV.length;i++){
+			var sinhVien = this.DSSV[i];
+			// js support method search()
+			if(sinhVien.HoTen.search(keyword.trim()) != -1){
+				listResult.ThemSinhVien(sinhVien);
+			}
+		}
+		return listResult;
 	}
 }

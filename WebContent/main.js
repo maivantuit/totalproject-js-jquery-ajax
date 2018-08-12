@@ -69,7 +69,7 @@ function CapNhatDanhSachSV(DanhSachSinhVien){
 		
 		tdCheckBox.appendChild(checkBoxMaSV);
 		
-		var tdMaSV = createTagTd("MaSV", sv.MaSV+i);
+		var tdMaSV = createTagTd("MaSV", sv.MaSV);
 		var tdHoTen = createTagTd("HoTen", sv.HoTen);
 		var tdCMND = createTagTd("CMND", sv.CMND);
 		var tdEmail = createTagTd("Email", sv.Email);
@@ -112,10 +112,15 @@ function XoaSinhVien(){
 	var listMaSV = document.getElementsByClassName("checkBoxMaSVClass");
 	var listMaSVDuocChon =[];
 	for(var i=0; i< listMaSV.length; i++){
-		if(listMaSV[i].checked){
+		if(listMaSV[i].checked){			
 			listMaSVDuocChon.push(listMaSV[i].value);
 		}
 	}
 	danhSachSinhVien.XoaSinhVien(listMaSVDuocChon);
 	CapNhatDanhSachSV(danhSachSinhVien);
+}
+function TimKiemSinhVien(){
+	var keyword = document.getElementById("tukhoa").value;
+	var listDSSVTimKiem = danhSachSinhVien.TimKiemSinhVien(keyword);
+	CapNhatDanhSachSV(listDSSVTimKiem);
 }
