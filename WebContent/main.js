@@ -3,14 +3,14 @@ var danhSachSinhVien = new DanhSachSinhVien();
 
 var validate = new Validation();
 function ThemSinhVien(){
-	// Lấy dữ liệu từ user nhập vào.
+	// get data user input.
 	var masv = document.getElementById("masv").value;
 	var hoten = document.getElementById("hoten").value;
 	var cmnd = document.getElementById("cmnd").value;
 	var email = document.getElementById("email").value;
 	var sdt = document.getElementById("sdt").value;
 	
-	// Kiểm tra validation.
+	// check validation.
 	if(validate.checkEmpty(masv)){
 		document.getElementById("masv").style.borderColor='red';
 		return;
@@ -42,7 +42,7 @@ function ThemSinhVien(){
 		return;
 	}
 	
-	// thêm sinh viên:
+	// insert student
 	var sinhVien = new SinhVien(masv, hoten, email, sdt,cmnd);
 	danhSachSinhVien.ThemSinhVien(sinhVien);
 	CapNhatDanhSachSV(danhSachSinhVien);
@@ -60,13 +60,22 @@ function CapNhatDanhSachSV(DanhSachSinhVien){
 		var trSinhVien = document.createElement("tr");
 		// tạo thẻ td
 		var tdCheckBox = document.createElement("td");
-		var tdMaSV = createTagTd("MaSV", sv.MaSV);
+		
+		var checkBoxMaSV = document.createElement("input");
+		
+		checkBoxMaSV.setAttribute("class", 'checkBoxMaSVClass');
+		checkBoxMaSV.setAttribute("type", 'checkbox');
+		checkBoxMaSV.setAttribute("value", sv.MaSV);
+		
+		tdCheckBox.appendChild(checkBoxMaSV);
+		
+		var tdMaSV = createTagTd("MaSV", sv.MaSV+i);
 		var tdHoTen = createTagTd("HoTen", sv.HoTen);
 		var tdCMND = createTagTd("CMND", sv.CMND);
 		var tdEmail = createTagTd("Email", sv.Email);
 		var tdSDT = createTagTd("SoDT", sv.SoDT);
 		
-		// Append các td vào tr
+		// Append các td vào tr		
 		trSinhVien.appendChild(tdCheckBox);
 		trSinhVien.appendChild(tdMaSV);
 		trSinhVien.appendChild(tdHoTen);
@@ -97,5 +106,16 @@ function GetStorage(){
 	var jsonDanhSachSinhVien = localStorage.getItem("DanhSachSV");
 	var mangDSSV = JSON.parse(jsonDanhSachSinhVien);
 	danhSachSinhVien.DSSV= mangDSSV;
+	CapNhatDanhSachSV(danhSachSinhVien);
+}
+function XoaSinhVien(){
+	var listMaSV = document.getElementsByClassName("checkBoxMaSVClass");
+	var listMaSVDuocChon =[];
+	for(var i=0; i< listMaSV.length; i++){
+		if(listMaSV[i].checked){
+			listMaSVDuocChon.push(listMaSV[i].value);
+		}
+	}
+	danhSachSinhVien.XoaSinhVien(listMaSVDuocChon);
 	CapNhatDanhSachSV(danhSachSinhVien);
 }
