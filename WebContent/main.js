@@ -55,9 +55,12 @@ function CapNhatDanhSachSV(DanhSachSinhVien){
 	listTableSV.innerHTML="";
 	for(var i=0; i<DanhSachSinhVien.DSSV.length;i++){
 		// lấy thông tin sinh viên:
-		var sv = danhSachSinhVien.DSSV[i];
+		var sv = DanhSachSinhVien.DSSV[i];
 		// tạo thẻ tr
 		var trSinhVien = document.createElement("tr");
+		trSinhVien.id = sv.MaSV;
+		trSinhVien.className ="trSinhVien";
+		trSinhVien.setAttribute("onclick","ChinhSuaSinhVien('"+sv.MaSV+"')");
 		// tạo thẻ td
 		var tdCheckBox = document.createElement("td");
 		
@@ -123,4 +126,42 @@ function TimKiemSinhVien(){
 	var keyword = document.getElementById("tukhoa").value;
 	var listDSSVTimKiem = danhSachSinhVien.TimKiemSinhVien(keyword);
 	CapNhatDanhSachSV(listDSSVTimKiem);
+}
+
+function changeColorDefaultTr(){
+	
+}
+function ChinhSuaSinhVien(masv){
+	var sinhVien = danhSachSinhVien.TimSVTheoMa(masv.trim());
+	if(sinhVien!=null){
+		document.getElementById("masv").value = sinhVien.MaSV;
+		document.getElementById("hoten").value = sinhVien.HoTen;
+		document.getElementById("cmnd").value = sinhVien.CMND;
+		document.getElementById("email").value = sinhVien.Email;
+		document.getElementById("sdt").value = sinhVien.SoDT;		
+	}
+}
+function LuuThongTin()
+{
+    //Lấy dữ liệu từ người dùng nhập vào
+    var masv = document.getElementById("masv").value;
+    var hoten = document.getElementById("hoten").value;
+    var cmnd = document.getElementById("cmnd").value;
+    var email = document.getElementById("email").value;
+    var sdt = document.getElementById("sdt").value;
+    var loi = 0;
+    //Kiểm tra validation    
+    if(loi != 0)
+    {
+        return ;
+    }
+    //Thêm sinh viên
+    var sinhvien = new SinhVien(masv,hoten,email,sdt,cmnd);
+    /*sinhvien.DiemHoa = DomID("Toan").value;
+    sinhvien.DiemLy = DomID("Ly").value;
+    sinhvien.DiemHoa = DomID("Hoa").value;
+    sinhvien.TinhDTB();
+    sinhvien.XepLoai();*/
+    danhSachSinhVien.SuaSinhVien(sinhvien);
+    CapNhatDanhSachSV(danhSachSinhVien);
 }

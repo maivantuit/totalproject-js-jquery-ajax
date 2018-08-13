@@ -16,17 +16,36 @@ function DanhSachSinhVien(){
 		}
 	}
 	this.SuaSinhVien = function(svCapNhat){
-		
+		for(var i =0 ; i < this.DSSV.length;i++){			
+			if(svCapNhat.MaSV==this.DSSV[i].MaSV){
+				this.DSSV[i].HoTen = svCapNhat.HoTen;
+				this.DSSV[i].Email = svCapNhat.Email;
+				this.DSSV[i].CMND = svCapNhat.CMND;
+				this.DSSV[i].SoDT = svCapNhat.SoDT;				
+			}
+		}		
+		return this;
 	}
 	this.TimKiemSinhVien= function(keyword){
 		var listResult = new DanhSachSinhVien();
 		for(var i=0 ; i< this.DSSV.length;i++){
 			var sinhVien = this.DSSV[i];
-			// js support method search()
-			if(sinhVien.HoTen.search(keyword.trim()) != -1){
+			// js support method search()						
+			if(sinhVien.HoTen.toLowerCase().trim().includes(keyword.toLowerCase().trim())){
+//				alert(keyword.toLowerCase().trim());
+//				alert(sinhVien.HoTen.toLowerCase().trim());
 				listResult.ThemSinhVien(sinhVien);
 			}
 		}
 		return listResult;
+	}
+	this.TimSVTheoMa = function(masv){
+		for(var i=0 ; i< this.DSSV.length;i++){
+			var sv = this.DSSV[i];
+			if(sv.MaSV ===masv){
+				return sv;
+			}
+		}
+		return null;
 	}
 }
