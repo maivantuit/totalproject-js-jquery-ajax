@@ -1,6 +1,9 @@
 // new obj DanhSachSinhVien.
 var danhSachSinhVien = new DanhSachSinhVien();
 
+var service = new SinhVienService(); 
+service.LayDanhSachSinhVien();
+
 var validate = new Validation();
 
 SinhVien.prototype.DiemToan='';
